@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install unittest tonos-ts4==0.3.0rc2
+        pip install tonos-ts4==0.3.0rc2
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test
       run: |
