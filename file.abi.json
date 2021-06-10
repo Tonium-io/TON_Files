@@ -1,0 +1,73 @@
+{
+	"ABI version": 2,
+	"header": ["time", "expire"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"chunks_count","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "writeData",
+			"inputs": [
+				{"name":"index","type":"uint8"},
+				{"name":"chunk","type":"bytes"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getDetails",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"chunks_count","type":"uint8"},
+				{"name":"cur_chunk_count","type":"uint8"},
+				{"name":"creator_pubkey","type":"uint256"},
+				{"name":"chunks","type":"bytes[]"}
+			]
+		},
+		{
+			"name": "getData",
+			"inputs": [
+				{"name":"index","type":"uint8"}
+			],
+			"outputs": [
+				{"name":"data","type":"bytes"}
+			]
+		},
+		{
+			"name": "value",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"value","type":"uint256"}
+			]
+		},
+		{
+			"name": "m_root_address",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_root_address","type":"address"}
+			]
+		},
+		{
+			"name": "m_raw_data_chunks",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"m_raw_data_chunks","type":"bytes[]"}
+			]
+		}
+	],
+	"data": [
+		{"key":1,"name":"nonce","type":"uint8"},
+		{"key":2,"name":"m_root_address","type":"address"}
+	],
+	"events": [
+	]
+}
