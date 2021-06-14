@@ -19,10 +19,10 @@ contract tonFile {
     uint constant ERROR_SENDER_IS_NOT_ALLOWED = 109;
 
     // State:
-    uint8 static nonce;
+    uint128 static nonce;
     address public static m_root_address;
-    uint8 m_chunks_count;
-    uint8 m_cur_chunk_count;
+    uint128 m_chunks_count;
+    uint128 m_cur_chunk_count;
     address allowance_dest;
 
     bytes[] public m_raw_data_chunks;
@@ -42,7 +42,7 @@ contract tonFile {
         _;
     }
 
-    function writeData(uint8 index, bytes chunk) public onlyOwnerAndAccept{
+    function writeData(uint128 index, bytes chunk) public onlyOwnerAndAccept{
         require(msg.pubkey() == tvm.pubkey(), ERROR_SENDER_IS_NOT_MY_OWNER);
         require(m_raw_data_chunks[index].length == uint(0), ERROR_CHUNK_ALREADY_EXISTS);
         require(index <= m_chunks_count, ERROR_INCORRECT_INDEX);
@@ -64,7 +64,7 @@ contract tonFile {
         messages[hash] = expireAt;
         return body;
     }
-    function getDetails() public view returns (uint8 chunks_count, uint8 cur_chunk_count, uint256 creator_pubkey, bytes[] chunks) {
+    function getDetails() public view returns (uint128 chunks_count, uint128 cur_chunk_count, uint256 creator_pubkey, bytes[] chunks) {
         return (
             m_chunks_count,
             m_cur_chunk_count,
@@ -72,7 +72,7 @@ contract tonFile {
             m_raw_data_chunks
         );
     }
-    function getData(uint8 index) public view returns (bytes data) {
+    function getData(uint128 index) public view returns (bytes data) {
         return (m_raw_data_chunks[index]);
 
     }

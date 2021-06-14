@@ -13,7 +13,7 @@
 		{
 			"name": "writeData",
 			"inputs": [
-				{"name":"index","type":"uint8"},
+				{"name":"index","type":"uint128"},
 				{"name":"chunk","type":"bytes"}
 			],
 			"outputs": [
@@ -24,8 +24,8 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"chunks_count","type":"uint8"},
-				{"name":"cur_chunk_count","type":"uint8"},
+				{"name":"chunks_count","type":"uint128"},
+				{"name":"cur_chunk_count","type":"uint128"},
 				{"name":"creator_pubkey","type":"uint256"},
 				{"name":"chunks","type":"bytes[]"}
 			]
@@ -33,7 +33,7 @@
 		{
 			"name": "getData",
 			"inputs": [
-				{"name":"index","type":"uint8"}
+				{"name":"index","type":"uint128"}
 			],
 			"outputs": [
 				{"name":"data","type":"bytes"}
@@ -65,7 +65,7 @@
 		}
 	],
 	"data": [
-		{"key":1,"name":"nonce","type":"uint8"},
+		{"key":1,"name":"nonce","type":"uint128"},
 		{"key":2,"name":"m_root_address","type":"address"}
 	],
 	"events": [
