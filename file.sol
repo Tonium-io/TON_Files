@@ -20,7 +20,6 @@ contract tonFile {
 
     // State:
     uint128 static nonce;
-    address public static m_root_address;
     uint128 m_chunks_count;
     uint128 m_cur_chunk_count;
     address allowance_dest;

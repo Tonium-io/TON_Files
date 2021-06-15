@@ -48,14 +48,6 @@
 			]
 		},
 		{
-			"name": "m_root_address",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"m_root_address","type":"address"}
-			]
-		},
-		{
 			"name": "m_raw_data_chunks",
 			"inputs": [
 			],
@@ -65,8 +57,7 @@
 		}
 	],
 	"data": [
-		{"key":1,"name":"nonce","type":"uint128"},
-		{"key":2,"name":"m_root_address","type":"address"}
+		{"key":1,"name":"nonce","type":"uint128"}
 	],
 	"events": [
 	]

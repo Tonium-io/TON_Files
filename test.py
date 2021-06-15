@@ -18,7 +18,7 @@ class TestPair(unittest.TestCase):
         self.secret1 = key1[0]
         fileContract = ts4.BaseContract('file',dict(chunks_count=5),pubkey=self.public,private_key=self.secret,balance=150_000_000_000,nickname="FileContract")
 
-        fileContract.call_method('writeData',dict(index=1,chunk=ts4.Bytes("5423")),private_key=self.secret) 
+        fileContract.call_method('writeData',dict(index=1,chunk=ts4.Bytes("542354")),private_key=self.secret) 
         fileContract.call_method('writeData',dict(index=0,chunk=ts4.Bytes("5423")),private_key=self.secret) 
 
         ts4.dispatch_messages()
