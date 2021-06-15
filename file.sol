@@ -71,10 +71,10 @@ contract tonFile {
             m_raw_data_chunks
         );
     }
-    function getData(uint128 index) public view returns (bytes data) {
-        return (m_raw_data_chunks[index]);
+    // function getData(uint128 index) public view returns (bytes data) {
+    //     return (m_raw_data_chunks[index]);
 
-    }
+    // }
 
     function gc() private {
         optional(uint256, uint32) res = messages.min();
