@@ -5,7 +5,7 @@
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"chunks_count","type":"uint8"}
+				{"name":"chunks_count","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -13,7 +13,7 @@
 		{
 			"name": "writeData",
 			"inputs": [
-				{"name":"index","type":"uint128"},
+				{"name":"index","type":"uint32"},
 				{"name":"chunk","type":"bytes"}
 			],
 			"outputs": [
@@ -48,7 +48,7 @@
 		}
 	],
 	"data": [
-		{"key":1,"name":"nonce","type":"uint128"}
+		{"key":1,"name":"nonce","type":"uint64"}
 	],
 	"events": [
 	]

@@ -23,7 +23,6 @@ class TestPair(unittest.TestCase):
 
         ts4.dispatch_messages()
         print(fileContract.call_getter("getDetails"))
-        print(fileContract.call_getter("getData",dict(index=1)))
     # def test_exchanger1(self):
     #     ts4.reset_all() # reset all data
     #     ts4.init('./', verbose = True)
