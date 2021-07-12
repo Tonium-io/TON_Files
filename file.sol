@@ -3,8 +3,6 @@ pragma AbiHeader time;
 pragma AbiHeader expire;
 
 contract tonFile {
-    uint8 constant MAX_CLEANUP_MSGS = 30;
-    mapping(uint => uint32) messages;
     uint public value;
     uint constant ERROR_NO_WALLET = 100;
     uint constant ERROR_NO_PUBKEY = 101;
@@ -51,16 +49,12 @@ contract tonFile {
         m_raw_data_chunks[index] = chunk;
 
         ++m_cur_chunk_count;
-        gc();
     }
 
     function afterSignatureCheck(TvmSlice body, TvmCell message) private inline returns (TvmSlice) {
         body.decode(uint64);
         uint32 expireAt = body.decode(uint32);
         require(expireAt >= now, 101);
-        uint hash = tvm.hash(message);
-        require(!messages.exists(hash), 102);
-        messages[hash] = expireAt;
         return body;
     }
     function getDetails() public view returns (uint128 chunks_count, uint128 cur_chunk_count, uint256 creator_pubkey, bytes[] chunks) {
@@ -70,22 +64,5 @@ contract tonFile {
             tvm.pubkey(),
             m_raw_data_chunks
         );
-    }
-    // function getData(uint128 index) public view returns (bytes data) {
-    //     return (m_raw_data_chunks[index]);
-
-    // }
-
-    function gc() private {
-        optional(uint256, uint32) res = messages.min();
-        uint8 counter = 0;
-        while (res.hasValue() && counter < MAX_CLEANUP_MSGS) {
-            (uint256 msgHash, uint32 expireAt) = res.get();
-            if (expireAt < now) {
-                delete messages[msgHash];
-            }
-            counter++;
-            res = messages.next(msgHash);
-        }
     }
 }
