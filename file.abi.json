@@ -1,11 +1,14 @@
 {
 	"ABI version": 2,
+	"version": "2.1",
 	"header": ["time", "expire"],
 	"functions": [
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"chunks_count","type":"uint32"}
+				{"name":"chunks_count","type":"uint32"},
+				{"name":"mime","type":"string"},
+				{"name":"extension","type":"string"}
 			],
 			"outputs": [
 			]
@@ -27,6 +30,8 @@
 				{"name":"chunks_count","type":"uint128"},
 				{"name":"cur_chunk_count","type":"uint128"},
 				{"name":"creator_pubkey","type":"uint256"},
+				{"name":"mime","type":"string"},
+				{"name":"extension","type":"string"},
 				{"name":"chunks","type":"bytes[]"}
 			]
 		},
@@ -51,5 +56,17 @@
 		{"key":1,"name":"nonce","type":"uint64"}
 	],
 	"events": [
+	],
+	"fields": [
+		{"name":"_pubkey","type":"uint256"},
+		{"name":"_constructorFlag","type":"bool"},
+		{"name":"value","type":"uint256"},
+		{"name":"nonce","type":"uint64"},
+		{"name":"m_chunks_count","type":"uint32"},
+		{"name":"m_cur_chunk_count","type":"uint32"},
+		{"name":"_mime","type":"string"},
+		{"name":"_extension","type":"string"},
+		{"name":"allowance_dest","type":"address"},
+		{"name":"m_raw_data_chunks","type":"bytes[]"}
 	]
 }

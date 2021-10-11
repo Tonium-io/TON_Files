@@ -20,17 +20,21 @@ contract tonFile {
     uint64 static nonce;
     uint32 m_chunks_count;
     uint32 m_cur_chunk_count;
+    string _mime;
+    string _extension; // only string after dot
     address allowance_dest;
 
     bytes[] public m_raw_data_chunks;
 
-    constructor(uint32 chunks_count) public {
+    constructor(uint32 chunks_count, string mime, string extension) public {
         require(tvm.pubkey() != 0, 101);
         require(chunks_count > 0, ERROR_CHUNKS_COUNT_MUST_BE_ABOVE_THAN_ZERO);
         tvm.accept();
         
         m_chunks_count = chunks_count;
         m_raw_data_chunks = new bytes[](m_chunks_count);
+        _mime = mime;
+        _extension = extension;
     }
 
     modifier onlyOwnerAndAccept {
@@ -57,11 +61,13 @@ contract tonFile {
         require(expireAt >= now, 101);
         return body;
     }
-    function getDetails() public view returns (uint128 chunks_count, uint128 cur_chunk_count, uint256 creator_pubkey, bytes[] chunks) {
+    function getDetails() public view returns (uint128 chunks_count, uint128 cur_chunk_count, uint256 creator_pubkey,string mime, string extension, bytes[] chunks) {
         return (
             m_chunks_count,
             m_cur_chunk_count,
             tvm.pubkey(),
+            _mime,
+            _extension,
             m_raw_data_chunks
         );
     }
