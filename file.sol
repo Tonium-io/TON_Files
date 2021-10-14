@@ -20,13 +20,13 @@ contract tonFile {
     uint64 static nonce;
     uint32 m_chunks_count;
     uint32 m_cur_chunk_count;
-    string _mime;
-    string _extension; // only string after dot
+    bytes _mime;
+    bytes _extension; // only string after dot
     address allowance_dest;
 
     bytes[] public m_raw_data_chunks;
 
-    constructor(uint32 chunks_count, string mime, string extension) public {
+    constructor(uint32 chunks_count, bytes mime, bytes extension) public {
         require(tvm.pubkey() != 0, 101);
         require(chunks_count > 0, ERROR_CHUNKS_COUNT_MUST_BE_ABOVE_THAN_ZERO);
         tvm.accept();
@@ -61,7 +61,7 @@ contract tonFile {
         require(expireAt >= now, 101);
         return body;
     }
-    function getDetails() public view returns (uint128 chunks_count, uint128 cur_chunk_count, uint256 creator_pubkey,string mime, string extension, bytes[] chunks) {
+    function getDetails() public view returns (uint128 chunks_count, uint128 cur_chunk_count, uint256 creator_pubkey,bytes mime, bytes extension, bytes[] chunks) {
         return (
             m_chunks_count,
             m_cur_chunk_count,

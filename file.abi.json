@@ -7,8 +7,8 @@
 			"name": "constructor",
 			"inputs": [
 				{"name":"chunks_count","type":"uint32"},
-				{"name":"mime","type":"string"},
-				{"name":"extension","type":"string"}
+				{"name":"mime","type":"bytes"},
+				{"name":"extension","type":"bytes"}
 			],
 			"outputs": [
 			]
@@ -30,8 +30,8 @@
 				{"name":"chunks_count","type":"uint128"},
 				{"name":"cur_chunk_count","type":"uint128"},
 				{"name":"creator_pubkey","type":"uint256"},
-				{"name":"mime","type":"string"},
-				{"name":"extension","type":"string"},
+				{"name":"mime","type":"bytes"},
+				{"name":"extension","type":"bytes"},
 				{"name":"chunks","type":"bytes[]"}
 			]
 		},
@@ -64,8 +64,8 @@
 		{"name":"nonce","type":"uint64"},
 		{"name":"m_chunks_count","type":"uint32"},
 		{"name":"m_cur_chunk_count","type":"uint32"},
-		{"name":"_mime","type":"string"},
-		{"name":"_extension","type":"string"},
+		{"name":"_mime","type":"bytes"},
+		{"name":"_extension","type":"bytes"},
 		{"name":"allowance_dest","type":"address"},
 		{"name":"m_raw_data_chunks","type":"bytes[]"}
 	]
