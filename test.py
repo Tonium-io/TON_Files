@@ -6,6 +6,7 @@ import magic
 import base64
 from tonclient.client import TonClient
 from tonclient.types import ParamsOfCompressZstd, ParamsOfDecompressZstd, ClientConfig, NetworkConfig
+import time
 mime = magic.Magic(mime=True)
 
 file_name = "rust.so"
@@ -37,8 +38,11 @@ class TestPair(unittest.TestCase):
 
         with open(file_name,"rb") as f:
             temp = f.read()
+        prev = time.time()
         t = client.utils.compress_zstd(ParamsOfCompressZstd(uncompressed=str(base64.b64encode(temp),"utf-8"),level=LEVELS))
-        print(len(t.compressed),len(temp))
+        print(f"Encoding takes {time.time() - prev} seconds")
+        print(f"Compressing in x{round(len(temp) / len(t.compressed),2)}")
+        
         if len(t.compressed) < len(temp):
             temp =  base64.b64decode(t.compressed)
             zstd = True
@@ -52,22 +56,12 @@ class TestPair(unittest.TestCase):
         decode = fileContract.call_getter("getDetails")
         d = bytes.fromhex(''.join(decode[-2]))
         if decode[-1]:
+            prev = time.time()
             t = client.utils.decompress_zstd(ParamsOfDecompressZstd(compressed=str(base64.b64encode(d),"utf-8")))
+            print(f"Decoding takes {time.time() - prev} seconds")
             d = base64.b64decode(t.decompressed)
         with open("Output." + decode[4],"wb") as f:
             f.write(d)
-    # def test_exchanger1(self):
-    #     ts4.reset_all() # reset all data
-    #     ts4.init('./', verbose = True)
-    #     key1 = ts4.make_keypair()
-    #     self.public1 = key1[1]
-    #     self.secret1 = key1[0]
-    #     fileContract = ts4.BaseContract('14_CustomReplayProtection',dict(),pubkey=self.public,private_key=self.secret,balance=150_000_000_000,nickname="FileContract")
 
-    #     fileContract.call_method('storeValue',dict(new_value=1),private_key=self.secret) 
-
-    #     ts4.dispatch_messages()
-    #     #print(fileContract.call_getter("getDetails"))
-    #     print(fileContract.call_getter("getData",dict(index=1)))
 if __name__ == '__main__':
     unittest.main()
